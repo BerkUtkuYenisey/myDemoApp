@@ -13,6 +13,37 @@ import spark.template.mustache.MustacheTemplateEngine;
 
 public class App
 {
+	public static int howManyCD(Integer[] a, Integer[] b, int c, int d) {
+		if(a==null||b==null)
+			return -1;
+		int counter = 0;
+		for(int i=0;i<a.length;i++) { //checks if a has c
+			if(c==a[i]){
+				counter++;
+				break;
+			}
+		}
+		for(int i=0;i<a.length;i++) { //checks if a has d
+			if(d==a[i]){
+				counter++;
+				break;
+			}
+		}
+		for(int i=0;i<b.length;i++) { //checks if b has c
+			if(c==b[i]){
+				counter++;
+				break;
+			}
+		}
+		for(int i=0;i<b.length;i++) { //checks if b has d
+			if(d==b[i]){
+				counter++;
+				break;
+			}
+		}
+		return counter;
+	}
+	
     public static boolean search(ArrayList<Integer> array, int e) {
       System.out.println("inside search");
       if (array == null) return false;
@@ -34,19 +65,37 @@ public class App
         	String input1 = req.queryParams("input1");
             java.util.Scanner sc1 = new java.util.Scanner(input1);
             sc1.useDelimiter("[;\r\n]+");
-            java.util.ArrayList<Integer> inputList = new java.util.ArrayList<>();
+            ArrayList<Integer> inputList = new java.util.ArrayList<>();
             while (sc1.hasNext())
             {
               int value = Integer.parseInt(sc1.next().replaceAll("\\s",""));
               inputList.add(value);
             }
-            System.out.println(inputList);
+            
+            Integer[] inputListArrayForm = null;
+            inputListArrayForm = inputList.toArray(inputListArrayForm);
+
+            String input2 = req.queryParams("input2");
+            java.util.Scanner sc2 = new java.util.Scanner(input2);
+            sc2.useDelimiter("[;\r\n]+");
+            inputList = new java.util.ArrayList<>();
+            while (sc2.hasNext())
+            {
+              int value = Integer.parseInt(sc2.next().replaceAll("\\s",""));
+              inputList.add(value);
+            }
+            
+            Integer[] inputListArrayForm2 = null;
+            inputListArrayForm2 = inputList.toArray(inputListArrayForm2);
+            
+            String input3 = req.queryParams("input3").replaceAll("\\s","");
+            int input3AsInt = Integer.parseInt(input3);
+
+            String input4 = req.queryParams("input4").replaceAll("\\s","");
+            int input4AsInt = Integer.parseInt(input4);
 
 
-            String input2 = req.queryParams("input2").replaceAll("\\s","");
-            int input2AsInt = Integer.parseInt(input2);
-
-            boolean result = App.search(inputList, input2AsInt);
+            int result = App.howManyCD(inputListArrayForm, inputListArrayForm2,input3AsInt,input4AsInt);
 
            Map map = new HashMap();
             map.put("result", result);

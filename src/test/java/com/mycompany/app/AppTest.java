@@ -40,24 +40,65 @@ public class AppTest
     {
         assertTrue( true );
     }
-    //EKLEMELI KISIM
-    public void testFound() {
-        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        assertTrue(new App().search(array, 4));
-      }
+   
+	public void testFor4() {
+		Integer a[] = {1,2,3};
+		Integer b[] = {1,2,3,4};
+		App test = new App();
+		int output = test.howManyCD(a, b, 1, 2);
+		assertEquals(output,4);
+	}
+	
+	
+	public void testFor3() {
+		Integer a[] = {1,2,3};
+		Integer b[] = {1,2,3,4};
+		App test = new App();
+		int output = test.howManyCD(a, b, 1, 4);
+		assertEquals(output,3);
+	}
+	
+	
+	public void testFor2() {
+		Integer a[] = {1,2,3};
+		Integer b[] = {1,2,3,4};
+		App test = new App();
+		int output = test.howManyCD(a, b, 1, 5);
+		assertEquals(output,2);
+	}
+	
+	
+	public void testFor1() {
+		Integer a[] = {1,2,3};
+		Integer b[] = {1,2,3,4};
+		App test = new App();
+		int output = test.howManyCD(a, b, 4, 5);
+		assertEquals(output,1);
+	}
+	
 
-      public void testNotFound() {
-        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        assertFalse(new App().search(array, 5));
-      }
-
-      public void testEmptyArray() {
-        ArrayList<Integer> array = new ArrayList<>();
-        assertFalse(new App().search(array, 1));
-      }
-
-      public void testNull() {
-        assertFalse(new App().search(null, 1));
-      }
+	public void testFor0() {
+		Integer a[] = {};
+		Integer b[] = {};
+		App test = new App();
+		int output = test.howManyCD(a, b, 6, 5);
+		assertEquals(output,0);
+	}
+	
+	
+	public void testForNullB() {
+		App test = new App();
+		Integer b[] = {1,2,3};
+		int output = test.howManyCD(null, b, 3, 1);
+		assertEquals(output,-1);
+	}
+	
+	
+	public void testForNullA() {
+		App test = new App();
+		Integer a[] = {1,2,3};
+		int output = test.howManyCD(a, null, 3, 1);
+		assertEquals(output,-1);
+	}
 
 }
